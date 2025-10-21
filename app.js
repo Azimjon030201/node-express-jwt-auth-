@@ -12,8 +12,9 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://hazard030201_db_user:Azimjon03@cluster0.qa9sf6w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
+const url = "mongodb://localhost:27017/node-express-jwt-auth"
+const dbURI = "mongodb+srv://hazard030201_db_user:Azimjon03@cluster0.qa9sf6w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 
