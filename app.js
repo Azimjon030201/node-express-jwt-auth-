@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const authRouter = require("./routes/authRoutes")
-const app = express();
+const authRouter = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
+const {requireAuth} = require("./middleware/authMiddleware");
+const app = express();
+
+
 
 // middleware
 app.use(express.static('public'));
@@ -41,7 +44,7 @@ try {
 }
 // routes
 app.get('/', (req, res) => res.render("home"));
-app.get('/smoothies', (req, res) => res.render('smoothies'));
+app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'));
 app.use(authRouter);
 
 
