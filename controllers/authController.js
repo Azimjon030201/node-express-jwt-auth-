@@ -54,6 +54,8 @@ module.exports = {
     },
     login_post: async (req, res) => {
         const { email, password } = req.body;
+        // console.log(email, password);
+        
         try {
             const user = await User.login(email, password);
             const token = createToken(user._id);
@@ -64,5 +66,9 @@ module.exports = {
             res.status(400).json({errors});
         }
     },
+    logout_get: (req,res)=>{
+        res.cookie("jwt","",{maxAge:1});
+        res.redirect("/")
+    }
     
 }
